@@ -143,7 +143,8 @@ If you use the package or the measures, please cite:
 ```
 
 If you use SteamBERTh, please also cite MacBERTh, its base model
-([Manjavacas Arevalo and Fonteyn 2021](https://aclanthology.org/2021.nlp4dh-1.4/)); see the
+([Manjavacas and Fonteyn 2022](https://doi.org/10.46298/jdmdh.9152);
+[Manjavacas Arevalo and Fonteyn 2021](https://aclanthology.org/2021.nlp4dh-1.4/)); see the
 [model card](https://huggingface.co/juliuskoschnick/SteamBERTh).
 
 ## License
