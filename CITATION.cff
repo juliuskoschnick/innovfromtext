@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use innovfromtext, please cite the paper that introduces the measures."
+type: software
+title: innovfromtext
+authors:
+  - family-names: Koschnick
+    given-names: Julius
+license: GPL-3.0-or-later
+repository-code: "https://github.com/juliuskoschnick/innovfromtext"
+preferred-citation:
+  type: article
+  title: "Did a feedback mechanism between propositional and prescriptive knowledge create modern growth?"
+  authors:
+    - family-names: Koschnick
+      given-names: Julius
+  year: 2025
+  journal: "arXiv preprint arXiv:2512.16587"
+  doi: "10.48550/arXiv.2512.16587"
+  url: "https://arxiv.org/abs/2512.16587"

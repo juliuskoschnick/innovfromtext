@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "innovfromtext"
+dynamic = ["version"]
+description = "Text-based innovation and knowledge-spillover indices from historical (and modern) texts"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Julius Koschnick" }]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.22",
+    "pandas>=1.4",
+    "torch>=1.13",
+    "sentence-transformers>=2.2",
+    "tqdm",
+]
+keywords = ["innovation", "knowledge spillovers", "text as data", "economic history", "embeddings", "BERT"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/juliuskoschnick/innovfromtext"
+Paper = "https://arxiv.org/abs/2512.16587"
+Model = "https://huggingface.co/juliuskoschnick/SteamBERTh"
+
+[tool.hatch.version]
+path = "src/innovfromtext/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/innovfromtext"]
