@@ -7,7 +7,7 @@ from .datasets import load_example
 from .embed import DEFAULT_MODEL, embed, load_model, resolve_device
 from .measures import MEASURES, compute, field_slug, innovation, received_spillover, spillover
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "compute", "innovation", "spillover", "received_spillover", "embed", "load_model", "resolve_device",

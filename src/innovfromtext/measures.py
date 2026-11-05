@@ -108,7 +108,8 @@ def compute(
         rows remain in the comparison pools.
     embeddings : optional precomputed embeddings, one row per row of ``df`` (e.g. from ``innovfromtext.embed``).
         If omitted, the texts are embedded with ``model``.
-    model : Hugging Face name or local path of a sentence-transformers model (default: SteamBERTh).
+    model : Hugging Face name or local path of a sentence-transformers model (default: all-MiniLM-L6-v2; the paper
+        uses SteamBERTh, ``model="juliuskoschnick/SteamBERTh"``).
     device : ``"auto"``/``None`` (GPU if available, else CPU), ``"gpu"``, ``"cpu"`` or a torch device string.
     batch_size, show_progress : passed to the encoder; ``show_progress`` also shows the progress of the indices.
 

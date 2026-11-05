@@ -6,7 +6,7 @@ from typing import Iterable, Optional, Union
 import numpy as np
 import torch
 
-DEFAULT_MODEL = "juliuskoschnick/SteamBERTh"
+DEFAULT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"   # SteamBERTh (the paper): "juliuskoschnick/SteamBERTh"
 
 _MODELS: dict = {}
 
@@ -54,7 +54,7 @@ def embed(
     batch_size: int = 32,
     show_progress: bool = True,
 ) -> np.ndarray:
-    """Embed texts with a sentence-transformers model (default: SteamBERTh).
+    """Embed texts with a sentence-transformers model (default: all-MiniLM-L6-v2).
 
     Returns a float32 array of shape (number of texts, embedding dimension) with unit-length rows, so that dot
     products are cosine similarities. Embed once and pass the result to ``compute(..., embeddings=...)`` to

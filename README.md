@@ -11,9 +11,11 @@ Text-based measures of innovation and knowledge spillovers. `innovfromtext` comp
 book titles, abstracts, patent descriptions, articles. The measures need no citation data, only the texts, their
 years and their fields.
 
-By default, texts are embedded with [SteamBERTh](https://huggingface.co/juliuskoschnick/SteamBERTh), a
-historical BERT model fine-tuned on seventeenth- and eighteenth-century scientific and technical texts. Any other
-[sentence-transformers](https://www.sbert.net) model can be used instead.
+In [Koschnick (2025)](https://arxiv.org/abs/2512.16587), the measure uses
+[SteamBERTh](https://huggingface.co/juliuskoschnick/SteamBERTh) embeddings, a historical BERT model fine-tuned on
+seventeenth- and eighteenth-century scientific and technical texts. For other applications, any other
+[sentence-transformers](https://www.sbert.net) model can be used instead. As a default for modern data, the package
+calls [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
 ## Installation
 
@@ -30,10 +32,10 @@ import innovfromtext as ift
 
 df = ift.load_example()     # Philosophical Transactions titles 1665-1800 and English patents 1700-1800
 
-out = ift.compute(df, "innovation")
+out = ift.compute(df, "innovation", model="juliuskoschnick/SteamBERTh")      # historical texts: SteamBERTh
 
 out = ift.compute(df, "received_spillover",
-                  from_fields=["Philosophical Transactions"], to_fields=["Patents"])
+                  from_fields=["Philosophical Transactions"], to_fields=["Patents"], model="juliuskoschnick/SteamBERTh")
 ```
 
 The data need one row per text with the text, its year and its field; name your columns with `text=`, `year=` and
@@ -93,7 +95,7 @@ per-field indices, as in the paper, and the per-field indices are returned as we
 | `complete_windows` | `True` | missing index for texts whose windows reach beyond the years covered by the data |
 | `subset` | `None` | boolean mask: compute the index only for these rows (all rows stay in the pools) |
 | `embeddings` | `None` | precomputed embeddings, one row per row of `df` |
-| `model` | `"juliuskoschnick/SteamBERTh"` | any sentence-transformers model name or local path |
+| `model` | `"sentence-transformers/all-MiniLM-L6-v2"` | any sentence-transformers model name or local path; SteamBERTh: `"juliuskoschnick/SteamBERTh"` |
 | `device` | `"auto"` | `"auto"` (GPU if available, else CPU), `"gpu"`, `"cpu"`, or a torch device such as `"cuda:1"` |
 | `batch_size`, `show_progress` | 32, `True` | encoding batch size; progress bars |
 
@@ -123,8 +125,8 @@ and rows without the required pools, get a missing value.
   with, so their indices are noisy. The paper's data start in 1473; its analysis starts in 1660.
 - **Logs.** The paper uses the natural logarithm of the indices. A ratio can turn negative in the rare case of a
   negative similarity, and its logarithm is then undefined.
-- **Other models.** For modern texts, a modern model is the better choice, e.g.
-  `model="sentence-transformers/all-mpnet-base-v2"`.
+- **Models.** The default, all-MiniLM-L6-v2, is a small model for modern texts. For historical texts, use SteamBERTh
+  as in the paper: `model="juliuskoschnick/SteamBERTh"`.
 - **Exporting.** `out.to_csv("indices.csv", index=False)` gives a file for Stata or R; keep an identifier column
   in `df` to merge the indices back.
 
