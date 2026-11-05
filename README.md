@@ -42,6 +42,9 @@ The data need one row per text with the text, its year and its field; name your 
 `compute` returns `df` with the index appended as a new column. The
 [example notebook](examples/innovfromtext_example.ipynb) walks through all three measures and runs on Google Colab
 without installing anything locally.
+A second, short [demo on film plots](examples/innovfromtext_movies.ipynb) computes the innovation index for
+35,000 American films from precomputed embeddings and finds the most innovative films of each decade; it runs
+on Google Colab as well.
 
 ## Intuition
 
