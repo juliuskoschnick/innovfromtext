@@ -32,7 +32,7 @@ import innovfromtext as ift
 
 df = ift.load_example()     # Philosophical Transactions titles 1665-1800 and English patents 1700-1800
 
-out = ift.compute(df, "innovation", model="juliuskoschnick/SteamBERTh")      # historical texts: SteamBERTh
+out = ift.compute(df, "innovation", model="juliuskoschnick/SteamBERTh")      # historical texts: SteamBERTh, modern text: choose your own model or use all-MiniLM-L6-v2 as default
 
 out = ift.compute(df, "received_spillover",
                   from_fields=["Philosophical Transactions"], to_fields=["Patents"], model="juliuskoschnick/SteamBERTh")
