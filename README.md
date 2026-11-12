@@ -116,19 +116,18 @@ and rows without the required pools, get a missing value.
 
 ## Practical notes
 
-- **Embed once.** Embedding the texts is the slow step. To compute several measures or variants, embed once with
+- **Embed once.** The bottleneck of calculating innovation and spillovers is the calculation of the embeddings.
+  Hence, if you're calculating multiple measures, only embed once. To compute several measures or variants, use
   `emb = ift.embed(df["title"])` and pass `embeddings=emb`, or pass a list of measures to `compute`.
-- **GPU or CPU.** Thousands of texts take seconds to embed on a GPU and minutes on a CPU. All embeddings are held
-  on the device during the computation: 300,000 texts need about 1 GB.
-- **Start and end of the data.** Texts in the last $\tau$ years have incomplete forward windows and get a missing
-  index (unless `complete_windows=False`). Texts in the first years of the data have few earlier texts to compare
-  with, so their indices are noisy. The paper's data start in 1473; its analysis starts in 1660.
-- **Logs.** The paper uses the natural logarithm of the indices. A ratio can turn negative in the rare case of a
-  negative similarity, and its logarithm is then undefined.
+- **GPU or CPU.** Embedding text is significantly faster on a GPU than a CPU (seconds vs. minutes for a few
+  thousand texts). All embeddings are held on the device during the computation: 300,000 texts need about 1 GB.
+- **Start and end of the data.** Texts in the last years have incomplete forward windows and get a missing index
+  (unless `complete_windows=False`). Texts in the first years of the data have few earlier texts to compare with,
+  so their indices are noisy.
 - **Models.** The default, all-MiniLM-L6-v2, is a small model for modern texts. For historical texts, use SteamBERTh
   as in the paper: `model="juliuskoschnick/SteamBERTh"`.
-- **Exporting.** `out.to_csv("indices.csv", index=False)` gives a file for Stata or R; keep an identifier column
-  in `df` to merge the indices back.
+- **Exporting.** `out.to_csv("indices.csv", index=False)` gives a file for Stata or R. Keep an identifier column in
+  `df` to merge the indices back.
 
 ## Citation
 
