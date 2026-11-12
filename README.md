@@ -121,9 +121,9 @@ and rows without the required pools, get a missing value.
   `emb = ift.embed(df["title"])` and pass `embeddings=emb`, or pass a list of measures to `compute`.
 - **GPU or CPU.** Embedding text is significantly faster on a GPU than a CPU (seconds vs. minutes for a few
   thousand texts). All embeddings are held on the device during the computation: 300,000 texts need about 1 GB.
-- **Start and end of the data.** Texts in the last years have incomplete forward windows and get a missing index
-  (unless `complete_windows=False`). Texts in the first years of the data have few earlier texts to compare with,
-  so their indices are noisy.
+- **Start and end of the data.** Texts in the last $\tau$ years have incomplete forward windows and get a missing
+  index (unless `complete_windows=False`). Texts in the first years of the data have few earlier texts to compare
+  with, so their indices are noisy.
 - **Models.** The default, all-MiniLM-L6-v2, is a small model for modern texts. For historical texts, use SteamBERTh
   as in the paper: `model="juliuskoschnick/SteamBERTh"`.
 - **Exporting.** `out.to_csv("indices.csv", index=False)` gives a file for Stata or R. Keep an identifier column in
