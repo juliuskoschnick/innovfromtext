@@ -23,7 +23,7 @@ calls [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM
 pip install git+https://github.com/juliuskoschnick/innovfromtext.git
 ```
 
-Requires Python 3.9 or later. A GPU is used automatically when PyTorch finds one; everything also runs on a CPU.
+Requires Python 3.9 or later. A GPU is used automatically when PyTorch finds one. However, everything also runs on a CPU.
 
 ## Quick start
 
